@@ -7,13 +7,13 @@ import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-class GoogleTest {
+class GoogleTests {
     @Test
     void selenideSearchTest() {
         // Открыть google
         open("https://google.com");
         // Ввести Selenide в поиск
-        $(byName("q")).setValue("Selenide").pressEnter();
+        $("#q").setValue("Selenide").pressEnter();
         // Проверить, что Selenide появился в результатах поиска
         $("html").shouldHave(text("ru.selenide.org"));
     }
@@ -23,7 +23,7 @@ class GoogleTest {
         // Открыть google
         open("https://google.com");
         // Ввести Selenide в поиск
-        $(byName("q")).setValue("Selenide").pressEnter();
+        $("#q").setValue("Selenide").pressEnter();
         // Проверить, что Selenide появился в результатах поиска
         $("html").shouldHave(text("ru.selenide.org"));
 
@@ -35,15 +35,14 @@ class GoogleTest {
     @Test
     void selenideSearchMailRuTest() {
         open("https://google.com");
-        $(byName("q")).setValue("mail ru").pressEnter();
+        $("#q").setValue("mail ru").pressEnter();
         $("html").shouldHave(text("mail.ru"));
     }
 
     @Test
     void selenideSearchYandexTest() {
         open("https://yandex.ru/");
-        $(byCssSelector(".input__control.input__input")).setValue("Selenide").pressEnter();
+        $(".input__input").setValue("Selenide").pressEnter();
         $("html").shouldHave(text("ru.selenide.org"));
     }
-
 }
