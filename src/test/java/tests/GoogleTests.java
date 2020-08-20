@@ -7,42 +7,43 @@ import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
+
 class GoogleTests {
+    
     @Test
     void selenideSearchTest() {
         // Открыть google
         open("https://google.com");
+        
         // Ввести Selenide в поиск
-        $("#q").setValue("Selenide").pressEnter();
+        $(byName("q")).setValue("Selenide").pressEnter();
+        
         // Проверить, что Selenide появился в результатах поиска
-        $("html").shouldHave(text("ru.selenide.org"));
+        $("html").shouldHave(text("selenide.org"));
     }
 
     @Test
     void selenideSearchAndOpenTest() {
         // Открыть google
         open("https://google.com");
+        
         // Ввести Selenide в поиск
-        $("#q").setValue("Selenide").pressEnter();
+        $(byName("q")).setValue("Selenide").pressEnter();
+        
         // Проверить, что Selenide появился в результатах поиска
-        $("html").shouldHave(text("ru.selenide.org"));
+        $("html").shouldHave(text("selenide.org"));
 
         // открыть сайт selenide
-        $(byText("ru.selenide.org")).click();
-        $("html").shouldHave(text("ЧТО ТАКОЕ SELENIDE?"));
+        $(byText("selenide.org")).click();
+        
+        // Проверить, что открылась действительно нужная страница Selenide)
+        $("html").shouldHave(text("selenide.jar"));
     }
-
+    
     @Test
-    void selenideSearchMailRuTest() {
+    void SearchMailRuTest() {
         open("https://google.com");
-        $("#q").setValue("mail ru").pressEnter();
+        $(byName("q")).setValue("mail ru").pressEnter();
         $("html").shouldHave(text("mail.ru"));
-    }
-
-    @Test
-    void selenideSearchYandexTest() {
-        open("https://yandex.ru/");
-        $(".input__input").setValue("Selenide").pressEnter();
-        $("html").shouldHave(text("ru.selenide.org"));
     }
 }
